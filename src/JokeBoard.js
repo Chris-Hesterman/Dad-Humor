@@ -8,48 +8,46 @@ class JokeBoard extends Component {
         this.state = {
             jokes: []
         };
-        this.getJoke = this.getJoke.bind(this);
+        this.getJokes = this.getJokes.bind(this);
     }
-    async getJoke() {
-        return await fetch('https://icanhazdadjoke.com/', {
-            method: 'GET',
-            headers: {
+    async getJokes() {
+        let jokes = await fetch('https://icanhazdadjoke.com/search', {
+                method: 'GET',
+                headers: {
                 'Accept': 'application/json'
-            }
-        });
+                }
+            });
+            return jokes;
     }
 
     componentDidMount() {
-        
-        this.getJoke()
+        this.getJokes()
             .then(response => response.json())
             .then(data => {
+                console.log(data.results);
                 this.setState(prevSt => ({ jokes: prevSt.jokes.concat(data.joke) }))
             })
             .catch(err => console.log(err, 'Fuck'))     
     }
 
-    componentDidUpdate() {
-        
-        if (this.state.jokes.length < 10) {
-            setTimeout(() => {
-                this.getJoke()
-                    .then(response => response.json())
-                    .then(data => {
-                        this.setState(prevState => {
-                            if (!this.state.jokes.includes(data.joke)) {
-                                return ({ jokes: prevState.jokes.concat(data.joke) });
-                            }
-                        });
-                    })
-                    .catch(err => console.log(err, 'Fuck'));
-            }, 50);  
-        }  
-    }
-
+    // componentDidUpdate() {
+    //     if (this.state.jokes.length < 10) {
+    //         setTimeout(() => {
+    //             this.getJoke()
+    //                 .then(response => response.json())
+    //                 .then(data => {
+    //                     this.setState(prevState => {
+    //                         if (!this.state.jokes.includes(data.joke)) {
+    //                             return ({ jokes: prevState.jokes.concat(data.joke) });
+    //                         }
+    //                     });
+    //                 })
+    //                 .catch(err => console.log(err, 'Fuck'));
+    //         }, 50);  
+    //     }  
+    // }
 
     render() {
-        console.log(this.state.jokes)
 
         return (
             <div>
