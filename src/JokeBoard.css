@@ -1,3 +1,22 @@
-li{
+.JokeBoard {
+    border-radius: 10px;
+    background-color: peachpuff;
+    margin: 0 5vw;
+    padding: 2rem 0;
+}
+
+.JokeBoard-load {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    background-color: red;
+    margin: auto;
+}
+
+li {
     text-align: left;
+    list-style-type: none;
 }

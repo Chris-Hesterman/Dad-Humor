@@ -1,0 +1,24 @@
+.Joke{
+    display: flex;
+    align-items: center;
+
+}
+
+button {
+    min-width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 2rem;
+    outline: none;
+    background: yellowgreen;
+    box-shadow: 2px 2px 3px black;
+}
+
+button:active {
+    transform: translate(2px,2px);
+    box-shadow: none;
+    border: 1px solid gray;
+}
+
+
+

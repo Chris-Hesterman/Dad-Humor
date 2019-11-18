@@ -1,10 +1,12 @@
 import React from 'react';
+import './Joke.css'
 
 function Joke(props) {
     return (
-        <h2>
-            {props.humor}
-        </h2>
+        <div className='Joke'>
+            <button>like</button>
+            <p>{props.humor}</p>
+        </div> 
     );
 }
 
