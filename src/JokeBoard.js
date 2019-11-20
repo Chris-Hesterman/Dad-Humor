@@ -28,9 +28,11 @@ class JokeBoard extends Component {
                 .then(response => response.json())
                 .then(data => {
                     if (this.state.jokes.length < this.state.jokeMax) {
+                        
                         this.setState(prevState => {
                             if (!this.state.jokes.includes(data.joke)) {
-                                return ({ jokes: prevState.jokes.concat(data.joke) });
+                                const jokeInfo = [...prevState.jokes, data.joke];
+                                return ({ jokes: jokeInfo });
                             }
                         });
                     }  
@@ -52,7 +54,7 @@ class JokeBoard extends Component {
 
     render() {
         const dadJokes = this.state.jokes.length >= 10 ?
-            this.state.jokes.map((joke) => {
+            this.state.jokes.map(joke => {
                 return (
                     <li key={joke}>
                         <Joke humor={joke} />
