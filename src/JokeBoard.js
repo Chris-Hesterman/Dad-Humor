@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Joke from './Joke';
 import './JokeBoard.css';
+import dad from './dadSmall.png';
 
 let fillJokes;
 class JokeBoard extends Component {
@@ -74,6 +75,7 @@ class JokeBoard extends Component {
             <div className='JokeBoard-container'>
                 <div className='JokeBoard-side'>
                     <h1 className='Title' >Greatest Dad Jokes</h1>
+                    <img src={dad} alt='generic dad'/>
                     <button className='JokeBoard-new'>Get New Jokes</button>
                 </div>
                 <div className='JokeBoard'>

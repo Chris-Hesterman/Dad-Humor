@@ -70,7 +70,7 @@
 .Title {
     margin: 0;
     font-style: italic;
-    text-shadow: 2px 2px 2px #444;
+    text-shadow: 0 0 3px black;
 }
 
 ol {
@@ -81,4 +81,8 @@ ol {
 li {
     text-align: left;
     list-style-type: none;
+}
+
+img {
+    height: 13rem;
 }
