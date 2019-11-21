@@ -39,12 +39,11 @@ class Joke extends Component {
         const color = votePad <= 0 ? 0: votePad >= 11 ? 11: votePad;
         const face = color;
 
-        console.log(votePad, face)
         this.setState({ votes: votes, emoji: faces[face], ringColor: colors[color] });
     }
 
     componentDidUpdate() {
-        this.borderColor.current.style.border = `2px solid ${this.state.ringColor}`;
+        this.borderColor.current.style.border = `3px solid ${this.state.ringColor}`;
     }
 
     render() {
@@ -62,7 +61,6 @@ class Joke extends Component {
             </div> 
         );
     }
-
 }
     
 

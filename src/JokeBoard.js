@@ -63,15 +63,27 @@ class JokeBoard extends Component {
             })
             : false;
 
-        return (
-            <div className={dadJokes ? 'JokeBoard': 'JokeBoard-load'}>
-                {
-                    dadJokes ? 
-                    <ol>{dadJokes}</ol>
-                    : 'loading'
-                }
+        const load = (
+            <div className='JokeBoard-load'>
+                <p>Loading...</p>
             </div>
         )
+        
+
+        return dadJokes ? (
+            <div className='JokeBoard-container'>
+                <div className='JokeBoard-side'>
+                    <h1 className='Title' >Greatest Dad Jokes</h1>
+                    <button className='JokeBoard-new'>Get New Jokes</button>
+                </div>
+                <div className='JokeBoard'>
+                    {
+                        <ol>{dadJokes}</ol>
+                    }
+                </div>
+            </div>    
+        )
+        : (load)
     }
 }
 
