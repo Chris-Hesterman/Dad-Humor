@@ -4,14 +4,23 @@ import './JokeBoard.css';
 import dad from './dadSmall.png';
 
 let fillJokes;
+
 class JokeBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            jokes: [],
+            jokes: [
+                {
+                    votes: undefined,
+                    joke: undefined,
+                    id: undefined
+                }
+            ],
             jokeMax: 10,
         };
         this.getJoke = this.getJoke.bind(this);
+        this.getJokeList = this.getJokeList.bind(this);
+        this.handleVotes = this.handleVotes.bind(this);
     }
     
     async getJoke() {
@@ -20,27 +29,59 @@ class JokeBoard extends Component {
             headers: {
                 'Accept': 'application/json'
             }
-        });
+        }).then(response => response.json());
     }
 
     getJokeList() {
-        fillJokes = setInterval(() => {   
+        this.getJoke().then(data => {
+            this.setState({ jokes: [
+                {
+                    votes: 0,
+                    joke: data.joke,
+                    id: data.id
+                }
+            ]});
+        });
+        fillJokes = setInterval(() => { 
             this.getJoke()
-                .then(response => response.json())
                 .then(data => {
-                    if (this.state.jokes.length < this.state.jokeMax) {
-                        
-                        this.setState(prevState => {
-                            if (!this.state.jokes.includes(data.joke)) {
-                                const jokeInfo = [...prevState.jokes, data.joke];
-                                return ({ jokes: jokeInfo });
-                            }
-                        });
-                    }  
-                })
-                .catch(err => console.log(err, 'Fuck'));
-        }, 0); 
-        return fillJokes;
+                    if (this.state.jokes.length < this.state.jokeMax) {  
+                        for (let joke of this.state.jokes) {
+                            if (this.state.jokes[0].id === undefined) {
+                                this.setState({
+                                        jokes: [{
+                                            votes: 0,
+                                            joke: data.joke,
+                                            id: data.id
+                                        }]
+                                });
+                            } else if (joke.joke !== data.joke) {
+                                this.setState(prevState => {
+                                    const jokeInfo = [...prevState.jokes, {
+                                            votes: 0,
+                                            joke: data.joke,
+                                            id: data.id
+                                        }
+                                    ]; 
+                                    return ({ jokes: jokeInfo });
+                                });
+                            } 
+                        }                                                  
+                    }
+                }); 
+        }, 1000); 
+        
+    }
+
+    handleVotes(votes, jokeIndex) {
+        let replacementInfo = {
+            votes: votes,
+            joke: this.state.jokes[jokeIndex].joke,
+            id: this.state.jokes[jokeIndex].id
+        }
+        let jokeArr = this.state.jokes;
+        jokeArr.splice(jokeIndex, 1, replacementInfo);
+        this.setState({ jokes: jokeArr });
     }
 
     componentDidMount() {
@@ -50,15 +91,15 @@ class JokeBoard extends Component {
     componentDidUpdate() {
         if (this.state.jokes.length === this.state.jokeMax) {
             clearInterval(fillJokes);
-        }   
+        }  
     }
 
     render() {
         const dadJokes = this.state.jokes.length >= 10 ?
-            this.state.jokes.map(joke => {
+            this.state.jokes.map((joke, index)=> {
                 return (
-                    <li key={joke}>
-                        <Joke humor={joke} />
+                    <li key={joke.id}>
+                        <Joke joke={joke} jokeIndex={index} handleVotes={this.handleVotes} />
                     </li>
                 )
             })

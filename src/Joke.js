@@ -5,7 +5,6 @@ class Joke extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            votes: 0,
             emoji: '😐',
             ringColor: 'blue'
         }
@@ -16,7 +15,7 @@ class Joke extends Component {
 
     handleClick(e) {
         const list = e.target.classList;
-        let voteTotal = this.state.votes;
+        let voteTotal = this.props.joke.votes;
         
         list.add('thumbClick');
 
@@ -25,11 +24,12 @@ class Joke extends Component {
         } else {
             voteTotal = voteTotal + 1;
         }
+        
         this.voteIndicators(voteTotal);
+        this.props.handleVotes(voteTotal, this.props.jokeIndex);
         setTimeout(() => { 
             list.remove('thumbClick');            
         }, 250);
-
     }
 
     voteIndicators(votes) {
@@ -39,7 +39,7 @@ class Joke extends Component {
         const color = votePad <= 0 ? 0: votePad >= 11 ? 11: votePad;
         const face = color;
 
-        this.setState({ votes: votes, emoji: faces[face], ringColor: colors[color] });
+        this.setState({ emoji: faces[face], ringColor: colors[color] });
     }
 
     componentDidUpdate() {
@@ -51,10 +51,10 @@ class Joke extends Component {
         return (
             <div className='Joke'>
                 <i onClick={this.handleClick} className='far fa-thumbs-down' />
-                <p className='Joke-votes' ref={this.borderColor}>{this.state.votes}</p>
+                <p className='Joke-votes' ref={this.borderColor}>{this.props.joke.votes}</p>
                 <i onClick={this.handleClick} className='far fa-thumbs-up' />
                 <div className='Joke-container'>
-                    <p>{this.props.humor}</p>
+                    <p>{this.props.joke.joke}</p>
                     <h1 className='Joke-emoji'>{this.state.emoji}</h1>
                 </div>
                 
