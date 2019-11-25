@@ -62,7 +62,7 @@
     font-weight: bold;
     padding: .75rem;
     margin: 0 0 2rem 0;
-    border: none;
+    border: 1px solid #888;
     border-radius: 25px 2px 25px 2px;
     background: rgb(12,233,15);
     background: linear-gradient(151deg, rgba(12,233,15,1) 0%, rgba(12,233,15,1) 50%, rgba(0,212,255,1) 50%, rgba(0,212,255,1) 100%);
