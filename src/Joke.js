@@ -6,7 +6,7 @@ class Joke extends Component {
         super(props);
         this.state = {
             emoji: '😐',
-            ringColor: 'blue'
+            ringColor: 'lime'
         }
         this.borderColor = React.createRef()
         this.handleClick = this.handleClick.bind(this);
@@ -35,7 +35,7 @@ class Joke extends Component {
     voteIndicators(votes) {
         const votePad = votes + 6;
         const faces = ['🤬', '🤬', '😡', '😡', '🙁', '🙁', '😐', '😏', '😏', '😁', '😁', '😂'];
-        const colors = ['red', 'red', 'orange', 'orange', 'yellow', 'yellow', 'lime', 'green', 'green', 'blue', 'blue', 'violet'];
+        const colors = ['red', 'red', 'orange', 'orange', 'yellow', 'yellow', 'lime', 'green', 'green', 'blue', 'blue', 'purple'];
         const color = votePad <= 0 ? 0: votePad >= 11 ? 11: votePad;
         const face = color;
 
