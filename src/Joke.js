@@ -47,7 +47,6 @@ class Joke extends Component {
     }
 
     render() {
-        
         return (
             <div className='Joke'>
                 <i onClick={this.handleClick} className='far fa-thumbs-down' />

@@ -9,17 +9,10 @@ class JokeBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            jokes: [
-                {
-                    votes: undefined,
-                    joke: undefined,
-                    id: undefined
-                }
-            ],
+            jokes: new Set(),
             jokeMax: 10,
         };
         this.getJoke = this.getJoke.bind(this);
-        this.getJokeList = this.getJokeList.bind(this);
         this.handleVotes = this.handleVotes.bind(this);
     }
     
@@ -32,86 +25,57 @@ class JokeBoard extends Component {
         }).then(response => response.json());
     }
 
-    getJokeList() {
-        this.getJoke().then(data => {
-            this.setState({ jokes: [
-                {
-                    votes: 0,
-                    joke: data.joke,
-                    id: data.id
-                }
-            ]});
-        });
-        fillJokes = setInterval(() => { 
-            this.getJoke()
-                .then(data => {
-                    if (this.state.jokes.length < this.state.jokeMax) {  
-                        for (let joke of this.state.jokes) {
-                            if (this.state.jokes[0].id === undefined) {
-                                this.setState({
-                                        jokes: [{
-                                            votes: 0,
-                                            joke: data.joke,
-                                            id: data.id
-                                        }]
-                                });
-                            } else if (joke.joke !== data.joke) {
-                                this.setState(prevState => {
-                                    const jokeInfo = [...prevState.jokes, {
-                                            votes: 0,
-                                            joke: data.joke,
-                                            id: data.id
-                                        }
-                                    ]; 
-                                    return ({ jokes: jokeInfo });
-                                });
-                            } 
-                        }                                                  
-                    }
-                }); 
-        }, 1000); 
-        
-    }
-
     handleVotes(votes, jokeIndex) {
+        const jokeArr = Array.from(this.state.jokes);
         let replacementInfo = {
             votes: votes,
-            joke: this.state.jokes[jokeIndex].joke,
-            id: this.state.jokes[jokeIndex].id
+            joke: jokeArr[jokeIndex].joke,
+            id: jokeArr[jokeIndex].id
         }
-        let jokeArr = this.state.jokes;
         jokeArr.splice(jokeIndex, 1, replacementInfo);
-        this.setState({ jokes: jokeArr });
+        this.setState({ jokes: new Set(jokeArr) });
     }
 
     componentDidMount() {
-        this.getJokeList();
+        
+        fillJokes = setInterval(() => {
+            this.getJoke().then(data => {
+                let newJokes = this.state.jokes;
+                const joke = {
+                    votes: 0,
+                    joke: data.joke,
+                    id: data.id 
+                }
+                newJokes.add(joke);
+                this.setState({ jokes: newJokes })
+            });
+        }, 90);
     }
 
     componentDidUpdate() {
-        if (this.state.jokes.length === this.state.jokeMax) {
+        if (this.state.jokes.size >= this.state.jokeMax) {
+            console.log(this.state.jokes)
             clearInterval(fillJokes);
-        }  
+        } 
     }
 
     render() {
-        const dadJokes = this.state.jokes.length >= 10 ?
-            this.state.jokes.map((joke, index)=> {
+        const jokeArr = Array.from(this.state.jokes);
+        jokeArr.length = jokeArr.length >= 10 ? 10: jokeArr.length;
+
+        let dadJokes = jokeArr.length >= 10 ? jokeArr.map((joke, index)=> {
                 return (
                     <li key={joke.id}>
                         <Joke joke={joke} jokeIndex={index} handleVotes={this.handleVotes} />
                     </li>
                 )
-            })
-            : false;
-
+            }): false;
         const load = (
             <div className='JokeBoard-load'>
                 <p>Loading...</p>
             </div>
         )
         
-
         return dadJokes ? (
             <div className='JokeBoard-container'>
                 <div className='JokeBoard-side'>
@@ -126,7 +90,7 @@ class JokeBoard extends Component {
                 </div>
             </div>    
         )
-        : (load)
+        : load;
     }
 }
 
