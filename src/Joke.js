@@ -26,7 +26,7 @@ class Joke extends Component {
         }
         
         this.voteIndicators(voteTotal);
-        this.props.handleVotes(voteTotal, this.props.jokeIndex);
+        this.props.handleVotes(voteTotal, this.props.jokeId);
         setTimeout(() => { 
             list.remove('thumbClick');            
         }, 250);
