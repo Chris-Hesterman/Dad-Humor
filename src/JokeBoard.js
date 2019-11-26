@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Joke from './Joke';
+import { Flipper, Flipped } from 'react-flip-toolkit';
 import './JokeBoard.css';
 import dad from './dadSmall.png';
 
@@ -11,6 +12,7 @@ class JokeBoard extends Component {
         this.state = {
             jokes: [],
             jokeMax: 10,
+            flip: 'left'
         };
         this.getJoke = this.getJoke.bind(this);
         this.collectJokes = this.collectJokes.bind(this);
@@ -77,7 +79,9 @@ class JokeBoard extends Component {
         sortedJokes.sort((a, b) => {
             return b.votes - a.votes;
         });
-        this.setState({ jokes: sortedJokes })
+        this.setState(prevState => {
+            return { jokes: sortedJokes, flip: !prevState.flip };
+        });
     }
 
     componentDidMount() {
@@ -96,9 +100,12 @@ class JokeBoard extends Component {
 
         let dadJokes = jokeArr.length >= 10 ? jokeArr.map((joke, index)=> {
                 return (
-                    <li key={joke.id}>
-                        <Joke joke={joke} jokeId={joke.id} handleVotes={this.handleVotes} />
-                    </li>
+                    <Flipped key={joke.id} flipId={joke.id}>
+                        <li>
+                            <Joke joke={joke} jokeId={joke.id} handleVotes={this.handleVotes} />
+                        </li>
+                    </Flipped>
+                    
                 )
             }): false;
         const load = (
@@ -115,9 +122,11 @@ class JokeBoard extends Component {
                     <button className='JokeBoard-new' onClick={this.handleClick}>Get New Jokes</button>
                 </div>
                 <div className='JokeBoard'>
-                    {
+                    <Flipper flipKey={this.state.flip}>
                         <ol>{dadJokes}</ol>
-                    }
+                    </Flipper>
+                        
+                    
                 </div>
             </div>    
         )
