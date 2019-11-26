@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: flex-start;
     height: 4rem;
+    padding: 5px 0;
 }
 
 .Joke-votes {
@@ -69,6 +70,12 @@ h1.Joke-emoji {
     50% {
         transform: rotateZ(.125turn);
     }     
+}
+
+@media (max-width: 1024px) {
+    p {
+        font-size: 1.3rem;  
+    }
 }
 
 

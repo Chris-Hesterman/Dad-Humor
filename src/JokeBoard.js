@@ -9,12 +9,13 @@ class JokeBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            jokes: new Set(),
+            jokes: [],
             jokeMax: 10,
         };
         this.getJoke = this.getJoke.bind(this);
         this.collectJokes = this.collectJokes.bind(this);
         this.handleVotes = this.handleVotes.bind(this);
+        this.sortJokes = this.sortJokes.bind(this);
         this.handleClick = this.handleClick.bind(this); 
     }
     
@@ -30,32 +31,53 @@ class JokeBoard extends Component {
     collectJokes() {
         fillJokes = setInterval(() => {
             this.getJoke().then(data => {
-                let newJokes = this.state.jokes;
+                const jokesArr = this.state.jokes;
                 const joke = {
                     votes: 0,
                     joke: data.joke,
                     id: data.id 
                 }
-                newJokes.add(joke);
-                this.setState({ jokes: newJokes })
+                const newJokesArr = jokesArr.filter(stateJoke => {
+                    return stateJoke.id !== joke.id;
+                });
+                newJokesArr.push(joke);
+                this.setState({ jokes: newJokesArr })
             });
         }, 90);
     }
 
     handleClick() {
-        this.setState({ jokes: new Set() })
+        this.setState({ jokes: [] })
         this.collectJokes();
     }
 
-    handleVotes(votes, jokeIndex) {
-        const jokeArr = Array.from(this.state.jokes);
-        let replacementInfo = {
-            votes: votes,
-            joke: jokeArr[jokeIndex].joke,
-            id: jokeArr[jokeIndex].id
-        }
-        jokeArr.splice(jokeIndex, 1, replacementInfo);
-        this.setState({ jokes: new Set(jokeArr) });
+    handleVotes(votes, id) {
+        let jokesArr = this.state.jokes;
+        
+        jokesArr.length = this.state.jokeMax;
+        jokesArr = jokesArr.map(jokeItem => {
+                if (jokeItem.id === id) {
+                    return {
+                        votes: votes,
+                        joke: jokeItem.joke,
+                        id: jokeItem.id
+                    }
+                } else {
+                    return jokeItem
+                }
+            });
+        this.setState({ jokes: jokesArr });
+        setTimeout(() => {
+            this.sortJokes();
+        }, 100);
+    }
+
+    sortJokes() {
+        const sortedJokes = this.state.jokes;
+        sortedJokes.sort((a, b) => {
+            return b.votes - a.votes;
+        });
+        this.setState({ jokes: sortedJokes })
     }
 
     componentDidMount() {
@@ -63,19 +85,19 @@ class JokeBoard extends Component {
     }
 
     componentDidUpdate() {
-        if (this.state.jokes.size >= this.state.jokeMax) {
+        if (this.state.jokes.length >= this.state.jokeMax) {
             clearInterval(fillJokes);
         } 
     }
 
     render() {
-        const jokeArr = Array.from(this.state.jokes);
+        const jokeArr = this.state.jokes;
         jokeArr.length = jokeArr.length >= 10 ? 10: jokeArr.length;
 
         let dadJokes = jokeArr.length >= 10 ? jokeArr.map((joke, index)=> {
                 return (
                     <li key={joke.id}>
-                        <Joke joke={joke} jokeIndex={index} handleVotes={this.handleVotes} />
+                        <Joke joke={joke} jokeId={joke.id} handleVotes={this.handleVotes} />
                     </li>
                 )
             }): false;

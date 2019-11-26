@@ -26,7 +26,7 @@ class Joke extends Component {
         }
         
         this.voteIndicators(voteTotal);
-        this.props.handleVotes(voteTotal, this.props.jokeIndex);
+        this.props.handleVotes(voteTotal, this.props.jokeId);
         setTimeout(() => { 
             list.remove('thumbClick');            
         }, 250);
@@ -35,7 +35,7 @@ class Joke extends Component {
     voteIndicators(votes) {
         const votePad = votes + 6;
         const faces = ['🤬', '🤬', '😡', '😡', '🙁', '🙁', '😐', '😏', '😏', '😁', '😁', '😂'];
-        const colors = ['black', 'black', 'red', 'red', 'purple', 'purple', 'blue', 'green', 'green', 'lime', 'lime', 'yellow'];
+        const colors = ['red', 'red', 'orange', 'orange', 'yellow', 'yellow', 'lime', 'green', 'green', 'blue', 'blue', 'purple'];
         const color = votePad <= 0 ? 0: votePad >= 11 ? 11: votePad;
         const face = color;
 
