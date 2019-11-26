@@ -8,7 +8,7 @@ class Joke extends Component {
             emoji: '😐',
             ringColor: 'lime'
         }
-        this.borderColor = React.createRef()
+        this.borderColor = React.createRef();
         this.handleClick = this.handleClick.bind(this);
         this.voteIndicators = this.voteIndicators.bind(this);
     }

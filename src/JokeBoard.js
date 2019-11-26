@@ -76,6 +76,7 @@ class JokeBoard extends Component {
 
     sortJokes() {
         const sortedJokes = this.state.jokes;
+
         sortedJokes.sort((a, b) => {
             return b.votes - a.votes;
         });
@@ -100,12 +101,11 @@ class JokeBoard extends Component {
 
         let dadJokes = jokeArr.length >= 10 ? jokeArr.map((joke, index)=> {
                 return (
-                    <Flipped key={joke.id} flipId={joke.id}>
+                    <Flipped key={joke.id} flipId={joke.id} stagger={true}>
                         <li>
                             <Joke joke={joke} jokeId={joke.id} handleVotes={this.handleVotes} />
                         </li>
                     </Flipped>
-                    
                 )
             }): false;
         const load = (
@@ -122,11 +122,9 @@ class JokeBoard extends Component {
                     <button className='JokeBoard-new' onClick={this.handleClick}>Get New Jokes</button>
                 </div>
                 <div className='JokeBoard'>
-                    <Flipper flipKey={this.state.flip}>
+                    <Flipper flipKey={this.state.flip} spring='wobbly'>
                         <ol>{dadJokes}</ol>
-                    </Flipper>
-                        
-                    
+                    </Flipper>       
                 </div>
             </div>    
         )
