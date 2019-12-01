@@ -43,7 +43,7 @@ class JokeBoard extends Component {
                 });
                 newJokesArr.push(joke);
                 this.setState({ jokes: newJokesArr });
-            });
+            });sdfsdf
         }, 90);
     }
 
