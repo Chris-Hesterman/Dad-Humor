@@ -4,7 +4,6 @@ import { Flipper, Flipped } from 'react-flip-toolkit';
 import './JokeBoard.css';
 import dad from './dadSmall.png';
 
-
 let fillJokes;
 class JokeBoard extends Component {
     constructor(props) {
@@ -43,13 +42,14 @@ class JokeBoard extends Component {
                     return stateJoke.id !== joke.id;
                 });
                 newJokesArr.push(joke);
-                this.setState({ jokes: newJokesArr })
+                this.setState({ jokes: newJokesArr });
             });
         }, 90);
     }
 
     handleClick() {
-        this.setState({ jokes: [] })
+
+        this.setState({ jokes: [] });
         this.collectJokes();
     }
 
@@ -86,20 +86,20 @@ class JokeBoard extends Component {
     }
 
     componentDidMount() {
-        this.collectJokes();
+        this.collectJokes(); 
     }
 
     componentDidUpdate() {
         if (this.state.jokes.length >= this.state.jokeMax) {
-            clearInterval(fillJokes);
+            clearInterval(fillJokes); 
         } 
     }
 
     render() {
         const jokeArr = this.state.jokes;
         jokeArr.length = jokeArr.length >= 10 ? 10: jokeArr.length;
-
-        let dadJokes = jokeArr.length >= 10 ? jokeArr.map((joke, index)=> {
+        
+        let dadJokes = jokeArr.length >= 10 ? jokeArr.map(joke => {
                 return (
                     <Flipped key={joke.id} flipId={joke.id} stagger={true}>
                         <li>
@@ -109,13 +109,13 @@ class JokeBoard extends Component {
                 )
             }): false;
         const load = (
-            <div className='JokeBoard-load'>
+            <div className={`JokeBoard-load`}>
                 <p>Loading...</p>
             </div>
         )
         
         return dadJokes ? (
-            <div className='JokeBoard-container'>
+            <div className={`JokeBoard-container`}>
                 <div className='JokeBoard-side'>
                     <h1 className='Title' >Greatest Dad Jokes</h1>
                     <img src={dad} alt='generic dad'/>
