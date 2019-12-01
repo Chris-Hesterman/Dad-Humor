@@ -48,7 +48,6 @@ class JokeBoard extends Component {
     }
 
     handleClick() {
-
         this.setState({ jokes: [] });
         this.collectJokes();
     }
