@@ -30,25 +30,31 @@ class JokeBoard extends Component {
     }
 
     collectJokes() {
-        fillJokes = setInterval(() => {
-            this.getJoke().then(data => {
-                const jokesArr = this.state.jokes;
-                const joke = {
-                    votes: 0,
-                    joke: data.joke,
-                    id: data.id 
-                }
-                const newJokesArr = jokesArr.filter(stateJoke => {
-                    return stateJoke.id !== joke.id;
+        if (!localStorage.jokes) {
+            fillJokes = setInterval(() => {
+                this.getJoke().then(data => {
+                    const jokesArr = this.state.jokes;
+                    const joke = {
+                        votes: 0,
+                        joke: data.joke,
+                        id: data.id 
+                    }
+                    const newJokesArr = jokesArr.filter(stateJoke => {
+                        return stateJoke.id !== joke.id;
+                    });
+                    newJokesArr.push(joke);
+                    this.setState({ jokes: newJokesArr });
                 });
-                newJokesArr.push(joke);
-                this.setState({ jokes: newJokesArr });
-            });sdfsdf
-        }, 90);
+            }, 90);
+        } else {
+            let storedJokes = JSON.parse(localStorage.getItem('jokes'));
+            this.setState({ jokes: storedJokes });
+        }
     }
 
     handleClick() {
         this.setState({ jokes: [] });
+        localStorage.removeItem('jokes');
         this.collectJokes();
     }
 
@@ -90,7 +96,8 @@ class JokeBoard extends Component {
 
     componentDidUpdate() {
         if (this.state.jokes.length >= this.state.jokeMax) {
-            clearInterval(fillJokes); 
+            clearInterval(fillJokes);
+            localStorage.setItem('jokes', JSON.stringify(this.state.jokes));
         } 
     }
 
