@@ -11,8 +11,9 @@ class JokeBoard extends Component {
         this.state = {
             jokes: [],
             jokeMax: 10,
-            flip: 'left'
+            flip: 'left',
         };
+        this.jokeFade = React.createRef();
         this.getJoke = this.getJoke.bind(this);
         this.collectJokes = this.collectJokes.bind(this);
         this.handleVotes = this.handleVotes.bind(this);
@@ -53,9 +54,14 @@ class JokeBoard extends Component {
     }
 
     handleClick() {
-        this.setState({ jokes: [] });
-        localStorage.removeItem('jokes');
-        this.collectJokes();
+        this.jokeFade.current.classList.remove('JokeBoard-fadeOut')
+        this.jokeFade.current.classList.add('JokeBoard-fadeOut');
+        setTimeout(() => {
+            this.setState({ jokes: [] });
+            localStorage.removeItem('jokes');
+            this.collectJokes();
+        }, 1000);
+        
     }
 
     handleVotes(votes, id) {
@@ -121,7 +127,7 @@ class JokeBoard extends Component {
         )
         
         return dadJokes ? (
-            <div className={`JokeBoard-container`}>
+            <div className={`JokeBoard-container `} ref={this.jokeFade}>
                 <div className='JokeBoard-side'>
                     <h1 className='Title' >Greatest Dad Jokes</h1>
                     <img src={dad} alt='generic dad'/>
