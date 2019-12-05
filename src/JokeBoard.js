@@ -46,10 +46,12 @@ class JokeBoard extends Component {
                     newJokesArr.push(joke);
                     this.setState({ jokes: newJokesArr });
                 });
-            }, 90);
+            }, 180);
         } else {
             let storedJokes = JSON.parse(localStorage.getItem('jokes'));
-            this.setState({ jokes: storedJokes });
+            setTimeout(() => {
+                this.setState({ jokes: storedJokes });
+            }, 2000);  
         }
     }
 
@@ -60,8 +62,7 @@ class JokeBoard extends Component {
             this.setState({ jokes: [] });
             localStorage.removeItem('jokes');
             this.collectJokes();
-        }, 1000);
-        
+        }, 1000);  
     }
 
     handleVotes(votes, id) {
@@ -121,9 +122,9 @@ class JokeBoard extends Component {
                 )
             }): false;
         const load = (
-            <div className={`JokeBoard-load`}>
-                <p>Loading...</p>
-            </div>
+            <p>
+                <i className='fas fa-circle-notch'></i>
+            </p>
         )
         
         return dadJokes ? (
