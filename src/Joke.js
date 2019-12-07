@@ -44,6 +44,7 @@ class Joke extends Component {
 
     componentDidUpdate() {
         this.borderColor.current.style.border = `3px solid ${this.state.ringColor}`;
+        this.voteIndicators(this.props.joke.votes);
     }
 
     render() {
