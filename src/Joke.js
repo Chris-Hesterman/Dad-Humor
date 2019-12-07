@@ -25,7 +25,7 @@ class Joke extends Component {
             voteTotal = voteTotal + 1;
         }
         
-        this.voteIndicators(voteTotal);
+        //this.voteIndicators(voteTotal);
         this.props.handleVotes(voteTotal, this.props.jokeId);
         setTimeout(() => { 
             list.remove('thumbClick');            
@@ -33,28 +33,32 @@ class Joke extends Component {
     }
 
     voteIndicators(votes) {
-        const votePad = votes + 6;
-        const faces = ['🤬', '🤬', '😡', '😡', '🙁', '🙁', '😐', '😏', '😏', '😁', '😁', '😂'];
-        const colors = ['red', 'red', 'orange', 'orange', 'yellow', 'yellow', 'lime', 'green', 'green', 'blue', 'blue', 'purple'];
-        const color = votePad <= 0 ? 0: votePad >= 11 ? 11: votePad;
+        const votePad = Math.ceil((votes + 10) / 3);
+        const faces = ['🤬', '😡', '😤', '🙁', '😐', '😏', '😁', '😂'];
+        const colors = ['maroon', 'red', 'orange', 'yellow', 'lime', 'green', 'blue', 'purple'];
+        const color = votePad <= 0 ? 0: votePad >= 7 ? 7: votePad;
         const face = color;
 
-        this.setState({ emoji: faces[face], ringColor: colors[color] });
+        return ({ emoji: faces[face], ringColor: colors[color] });
     }
 
-    componentDidUpdate() {
-        this.borderColor.current.style.border = `3px solid ${this.state.ringColor}`;
-    }
+    // componentDidUpdate() {
+    //     this.borderColor.current.style.border = `3px solid ${this.voteIndicators(this.props.joke.votes).ringColor}`;
+    // }
 
     render() {
+        const color = this.voteIndicators(this.props.joke.votes).ringColor;
+        const colorRing = {
+            border: `3px solid ${color}`
+        }
         return (
             <div className='Joke'>
                 <i onClick={this.handleClick} className='far fa-thumbs-down' />
-                <p className='Joke-votes' ref={this.borderColor}>{this.props.joke.votes}</p>
+                <p className='Joke-votes' style={colorRing}>{this.props.joke.votes}</p>
                 <i onClick={this.handleClick} className='far fa-thumbs-up' />
                 <div className='Joke-container'>
                     <p>{this.props.joke.joke}</p>
-                    <h1 className='Joke-emoji'>{this.state.emoji}</h1>
+                    <h1 className='Joke-emoji'>{this.voteIndicators(this.props.joke.votes).emoji}</h1>
                 </div>
                 
             </div> 
