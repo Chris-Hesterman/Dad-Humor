@@ -135,7 +135,7 @@ class JokeBoard extends Component {
                     <button className='JokeBoard-new' onClick={this.handleClick}>Get New Jokes</button>
                 </div>
                 <div className='JokeBoard'>
-                    <Flipper flipKey={this.state.flip} spring='wobbly'>
+                    <Flipper flipKey={this.state.flip} spring='wobbly' className='JokeBoard-list'>
                         <ol>{dadJokes}</ol>
                     </Flipper>       
                 </div>

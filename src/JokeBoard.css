@@ -55,6 +55,10 @@
     width: 0;
 }
 
+.JokeBoard-list {
+    flex-grow: 1;
+}
+
 .JokeBoard-load {
     display: flex;
     align-items: center;
