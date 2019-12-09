@@ -119,14 +119,34 @@
     text-shadow: 1px 1px 2px black;
     font-weight: bold;
     margin: 0 0 2rem 0;
+    padding: .5rem 1vw;
+    outline: none;
     border: 1px solid #888;
     border-radius: 25px 2px 25px 2px;
+    box-shadow: 2px 2px 4px black;
     background: rgb(12,233,15);
     background: linear-gradient(151deg, rgba(12,233,15,1) 0%, rgba(12,233,15,1) 50%, rgba(0,212,255,1) 50%, rgba(0,212,255,1) 100%);
 }
 
+/* button {
+    min-width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 2rem;
+    
+    background: yellowgreen;
+    
+    
+} */
+
+.JokeBoard-new:active {
+    transform: translate(2px,2px);
+    box-shadow: none;
+    border: 1px solid gray;
+}
+
 .Title {
-    font-size: 2vw;
+    font-size: 2.5vw;
     margin: 0;
     font-style: italic;
     text-shadow: 0 0 4px black;
@@ -171,10 +191,10 @@ img {
         padding: 2vh 0;
     }
     .Title {
-        font-size: 5vw;  
+        font-size: 4.5vh;  
     }
     img {
-        height: 16vw;
+        height: 14vw;
     }
 }
 
@@ -189,12 +209,13 @@ img {
         width: 95vw;
     }
     .Title {
-        font-size: 7vw;
+        font-size: 3.8vh;
     }
     .JokeBoard-new {
-        font-size: 5vw;
+        font-size: 3.3vh;
+        padding: 5px 10px;
     }
     img {
-        height: 20vw;
+        height: 13vh;
     }
 }

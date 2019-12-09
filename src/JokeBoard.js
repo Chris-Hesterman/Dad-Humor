@@ -83,12 +83,11 @@ class JokeBoard extends Component {
         this.setState({ jokes: jokesArr });
         setTimeout(() => {
             this.sortJokes();
-        }, 100);
+        }, 120);
     }
 
     sortJokes() {
         const sortedJokes = this.state.jokes;
-
         sortedJokes.sort((a, b) => {
             return b.votes - a.votes;
         });
@@ -111,7 +110,6 @@ class JokeBoard extends Component {
     render() {
         const jokeArr = this.state.jokes;
         jokeArr.length = jokeArr.length >= 10 ? 10: jokeArr.length;
-        
         let dadJokes = jokeArr.length >= 10 ? jokeArr.map(joke => {
                 return (
                     <Flipped key={joke.id} flipId={joke.id} stagger={true}>
@@ -130,7 +128,7 @@ class JokeBoard extends Component {
         return dadJokes ? (
             <div className={`JokeBoard-container `} ref={this.jokeFade}>
                 <div className='JokeBoard-side'>
-                    <h1 className='Title' >Great Dad Jokes</h1>
+                    <h1 className='Title' >Lame Dad Jokes!</h1>
                     <img src={dad} alt='generic dad'/>
                     <button className='JokeBoard-new' onClick={this.handleClick}>Get New Jokes</button>
                 </div>
