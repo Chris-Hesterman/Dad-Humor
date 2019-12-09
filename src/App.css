@@ -7,11 +7,13 @@
   background: linear-gradient(151deg, rgba(12,233,15,1) 0%, rgba(12,233,15,1) 50%, rgba(0,212,255,1) 50%, rgba(0,212,255,1) 100%);
 }
 
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   .App {
     align-items: center;
   }
-}
+} */
+
+
 
 
 

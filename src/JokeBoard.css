@@ -3,11 +3,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: 1s fadeIn ease-in;
+    animation: .5s fadeIn ease-in;
 }
 
 .JokeBoard-fadeOut {
-    animation: 1s jokeFadeOut ease-out forwards;
+    animation: .5s jokeFadeOut ease-out forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        transform: rotateY(-.25turn);
+        opacity: 0;
+    }
+    100% {
+        transform: rotateY(0turn);
+        opacity: 1;
+    }
 }
 
 @keyframes jokeFadeOut {
@@ -16,8 +27,10 @@
     }
     100% {
         opacity: 0;
+        transform: rotateY(.25turn);
     }
 }
+
 .JokeBoard {
     display: flex;
     box-shadow: 0px 0px 3px #444;
@@ -50,15 +63,28 @@
     width: 300px;
     border-radius: 50%;
     background-color: transparent;
-    
 }
 
 .fa-circle-notch {
     color: red;
     text-shadow: 0px 0px 30px blue;
     font-size: 8rem;
-    animation: 2s fadeOut ease-out forwards;
+    animation: 1.4s fadeOut linear forwards;
 }
+
+@keyframes fadeOut {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: rotateZ(2turn);
+    }
+}
+
 
 
 .JokeBoard-side {
@@ -78,28 +104,9 @@
     width: 15vw;
 }
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
 
-@keyframes fadeOut {
-    0% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-        
-    }
-    100% {
-        opacity: 0;
-        transform: rotateZ(720deg)
-    }
-}
+
+
 
 .JokeBoard-new {
     font-size: 1.4vw;
@@ -164,5 +171,26 @@ img {
     }
     img {
         height: 16vw;
+    }
+}
+
+@media (max-width: 768px) {
+    ol {
+        padding: 3px;
+    }
+    .JokeBoard {
+        width: 95vw;
+    }
+    .JokeBoard-side {
+        width: 95vw;
+    }
+    .Title {
+        font-size: 7vw;
+    }
+    .JokeBoard-new {
+        font-size: 5vw;
+    }
+    img {
+        height: 20vw;
     }
 }
