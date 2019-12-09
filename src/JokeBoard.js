@@ -46,23 +46,23 @@ class JokeBoard extends Component {
                     newJokesArr.push(joke);
                     this.setState({ jokes: newJokesArr });
                 });
-            }, 180);
+            }, 140);
         } else {
             let storedJokes = JSON.parse(localStorage.getItem('jokes'));
             setTimeout(() => {
                 this.setState({ jokes: storedJokes });
-            }, 2000);  
+            }, 1800);  
         }
     }
 
     handleClick() {
-        this.jokeFade.current.classList.remove('JokeBoard-fadeOut')
         this.jokeFade.current.classList.add('JokeBoard-fadeOut');
         setTimeout(() => {
             this.setState({ jokes: [] });
             localStorage.removeItem('jokes');
             this.collectJokes();
-        }, 1000);  
+            
+        }, 700);  
     }
 
     handleVotes(votes, id) {
@@ -130,7 +130,7 @@ class JokeBoard extends Component {
         return dadJokes ? (
             <div className={`JokeBoard-container `} ref={this.jokeFade}>
                 <div className='JokeBoard-side'>
-                    <h1 className='Title' >Greatest Dad Jokes</h1>
+                    <h1 className='Title' >Great Dad Jokes</h1>
                     <img src={dad} alt='generic dad'/>
                     <button className='JokeBoard-new' onClick={this.handleClick}>Get New Jokes</button>
                 </div>
