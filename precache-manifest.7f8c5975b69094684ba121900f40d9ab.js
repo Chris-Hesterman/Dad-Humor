@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "22e7b56198b1ac71f7efb06588493a74",
+    "revision": "c6eece3d5ab9eef9441707ab79f79925",
     "url": "/Dad-Humor/index.html"
   },
   {
