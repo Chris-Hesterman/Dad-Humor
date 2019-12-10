@@ -7,7 +7,6 @@ function Joke(props) {
         let voteTotal = props.joke.votes;
         
         list.add('thumbClick');
-
         if (list[1].includes('down')) {
             voteTotal = voteTotal - 1;
         } else {

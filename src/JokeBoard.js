@@ -128,7 +128,7 @@ class JokeBoard extends Component {
         return dadJokes ? (
             <div className={`JokeBoard-container `} ref={this.jokeFade}>
                 <div className='JokeBoard-side'>
-                    <h1 className='Title' >Lame Dad Jokes!</h1>
+                    <h1 className='Title' >Dad Humor!</h1>
                     <img src={dad} alt='generic dad'/>
                     <button className='JokeBoard-new' onClick={this.handleClick}>Get New Jokes</button>
                 </div>
