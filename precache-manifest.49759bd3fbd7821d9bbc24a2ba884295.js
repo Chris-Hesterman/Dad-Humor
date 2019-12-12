@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "713f56ced69e230510da7efa2f740d5f",
+    "revision": "4f8e16715e830d14176de7fe76978f9a",
     "url": "/Dad-Humor/index.html"
   },
   {
-    "revision": "38c875d4ce4434e4888f",
-    "url": "/Dad-Humor/static/css/main.8c40f2e5.chunk.css"
+    "revision": "0e9edd70210d12c67f97",
+    "url": "/Dad-Humor/static/css/main.164e99eb.chunk.css"
   },
   {
     "revision": "2d528b8d883638f1932a",
     "url": "/Dad-Humor/static/js/2.b2474200.chunk.js"
   },
   {
-    "revision": "38c875d4ce4434e4888f",
-    "url": "/Dad-Humor/static/js/main.dfed35c2.chunk.js"
+    "revision": "0e9edd70210d12c67f97",
+    "url": "/Dad-Humor/static/js/main.c6cfa008.chunk.js"
   },
   {
     "revision": "41ef784e0af25c8c2761",

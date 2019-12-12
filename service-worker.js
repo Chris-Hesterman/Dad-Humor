@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Dad-Humor/precache-manifest.d17e4e7413eaf0ba6137ed8b093f69e5.js"
+  "/Dad-Humor/precache-manifest.49759bd3fbd7821d9bbc24a2ba884295.js"
 );
 
 self.addEventListener('message', (event) => {
