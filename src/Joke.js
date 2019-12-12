@@ -31,7 +31,7 @@ function Joke(props) {
     const { joke } = props;
     const color = voteIndicators(joke.votes).ringColor;
     const colorRing = {
-        border: `5px solid ${color}`
+        border: `4px solid ${color}`
     }
     
     return (

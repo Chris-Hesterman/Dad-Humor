@@ -190,6 +190,9 @@ img {
     ol {
         padding: 3px;
     }
+    li {
+        margin-left: -5px;
+    }
     .JokeBoard {
         width: 95vw;
     }

@@ -15,6 +15,7 @@
     min-width: 3rem;
     border: 3px solid blue;
     border-radius: 50%;
+    box-shadow: 0px 0px 5px black;
 }
 
 .Joke-container {
@@ -48,6 +49,9 @@ h1.Joke-emoji {
     font-style: none;
     text-shadow: none;
 }
+.fa-thumbs-up {
+    margin: 0 15px 0 10px;
+}
 
 @keyframes rotateThumb {
     50% {
@@ -56,12 +60,16 @@ h1.Joke-emoji {
 }
 
 @media (max-width: 767px) {
+    p {
+        font-size: .9rem;
+    }
     h1.Joke-emoji {
-        font-size: 1.5rem;
-        margin: 0 5px;
+        font-size: 1rem;
+        margin: 0 0 0 5px;
     }
     i {
-        font-size: 1.2rem;
+        font-size: .8rem;
+        letter-spacing: -5px;
     }
     i:hover {
         transform: none;
@@ -69,9 +77,14 @@ h1.Joke-emoji {
     i:active {
         transform: scale(1.2);
     }
+    .fa-thumbs-up {
+        margin: 0 15px 0 5px;
+    }
     .Joke-votes {
-        height: 2rem;
-        min-width: 2rem;
+        background: lightblue;
+        /* background: rgba(50, 50, 50, .25); */
+        height: 1rem;
+        min-width: 1rem;
     }
 }
 
