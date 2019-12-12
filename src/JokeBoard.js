@@ -119,12 +119,8 @@ class JokeBoard extends Component {
                     </Flipped>
                 )
             }): false;
-        const load = (
-            <p>
-                <i className='fas fa-circle-notch'></i>
-            </p>
-        )
-        
+        const load = <i className='fas fa-circle-notch'></i>
+         
         return dadJokes ? (
             <div className={`JokeBoard-container `} ref={this.jokeFade}>
                 <div className='JokeBoard-side'>

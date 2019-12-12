@@ -8,6 +8,7 @@
 
 .Joke-votes {
     padding: 0;
+    background: #aaddff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,7 +16,7 @@
     min-width: 3rem;
     border: 3px solid blue;
     border-radius: 50%;
-    box-shadow: 0px 0px 5px black;
+    box-shadow: 0px 0px 4px black;
 }
 
 .Joke-container {
@@ -29,13 +30,15 @@ p {
     font-size: 1rem;
 }
 
-i {
+.fa-thumbs-up,
+.fa-thumbs-down {
     font-size: 1.5rem;
     margin: 0 .5rem;
     transition: all .25s ease-in;
 }
 
-i:hover{
+.fa-thumbs-up:hover,
+.fa-thumbs-down:hover {
     cursor: pointer;
     transform: scale(1.2);
 }
@@ -47,7 +50,7 @@ i:hover{
 h1.Joke-emoji {
     margin-left: 1.5rem;
     font-style: none;
-    text-shadow: none;
+    text-shadow: -1px -1px 0px #888, 1px -1px 0px #888, -1px 1px 0px #888, 1px 1px 0px #888;
 }
 .fa-thumbs-up {
     margin: 0 15px 0 10px;
@@ -67,24 +70,26 @@ h1.Joke-emoji {
         font-size: 1rem;
         margin: 0 0 0 5px;
     }
-    i {
+    .fa-thumbs-up,
+    .fa-thumbs-down {
         font-size: .8rem;
         letter-spacing: -5px;
     }
-    i:hover {
+    .fa-thumbs-up:hover,
+    .fa-thumbs-down:hover  {
         transform: none;
     }
-    i:active {
+    .fa-thumbs-up:active,
+    .fa-thumbs-down:active {
         transform: scale(1.2);
     }
     .fa-thumbs-up {
         margin: 0 15px 0 5px;
     }
     .Joke-votes {
-        background: lightblue;
-        /* background: rgba(50, 50, 50, .25); */
-        height: 1rem;
-        min-width: 1rem;
+        height: 1.1rem;
+        min-width: 1.1rem;
+        font-size: .7rem;
     }
 }
 
