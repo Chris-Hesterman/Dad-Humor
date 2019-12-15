@@ -175,6 +175,9 @@ img {
         height: 14vw;
         margin: 20px 0;
     }
+    .fa-circle-notch {
+        align-self: center;
+    }
 }
 
 @media (max-width: 768px) {
