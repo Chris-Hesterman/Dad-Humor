@@ -130,8 +130,9 @@ class JokeBoard extends Component {
                 </div>
                 <div className='JokeBoard'>
                     <Flipper flipKey={this.state.flip} spring='wobbly' className='JokeBoard-list'>
-                        <ol>{dadJokes}</ol>
-                    </Flipper>       
+                        <p className='JokeBoard-instruct'>- scroll down, click thumbs to vote! -</p>
+                        <ol>{dadJokes}</ol>  
+                    </Flipper>         
                 </div>
             </div>    
         )
