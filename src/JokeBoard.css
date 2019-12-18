@@ -111,12 +111,14 @@
     vertical-align: center;
     color: gold;
     /* text-shadow: 1px 1px 2px black; */
-    text-shadow: -1px -1px 1px #555, 1px -1px 1px #555, -1px 1px 1px #555, 1px 1px 1px #555;
+    text-shadow: -1px -1px 1px #444, 1px -1px 1px #444, -1px 1px 1px #444, 1px 1px 1px #444;
     font-weight: bold;
     margin: 0 0 2rem 0;
     padding: .5rem 1vw;
     outline: none;
-    border: 1px solid #888;
+    border: 1px solid #666;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
     border-radius: 25px 2px 25px 2px;
     box-shadow: 2px 2px 4px black;
     background: rgb(12,233,15);
@@ -134,7 +136,7 @@
     margin: 0;
     font-style: italic;
     /* text-shadow: 0 0 4px black; */
-    text-shadow: -1px -1px 2px #555, 1px -1px 2px #555, -1px 1px 2px #555, 1px 1px 2px #555;
+    text-shadow: -1px -1px 1px #444, 1px -1px 1px #444, -1px 1px 1px #444, 1px 1px 1px #444;
 }
 
 ol {
